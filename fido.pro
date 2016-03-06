@@ -5,6 +5,11 @@ CONFIG += qt \
     qrc \
     resources
 
+greaterThan(QT_MAJOR_VERSION, 4) {
+    #Qt 5
+    QT += widgets
+}
+
 SOURCES = \
     p3Fido.cpp \
     FidoPlugin.cpp \
@@ -16,6 +21,5 @@ HEADERS = \
     helpers.h
 
 LIBS += -lmimetic
-
 
 TARGET = Fido
