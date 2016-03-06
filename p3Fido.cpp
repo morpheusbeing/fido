@@ -28,14 +28,16 @@
 #include <fstream>
 #include <iostream>
 
-
+// need to add your own GXSID
+// TODO: need to get automagically
 static const char * MY_GXSID   = "8f5079e2e2958f1e3b6006fb9cf2b5a5";
-static const char * MAILDOMAIN = "ns3.ativel.com";
+// TODO: need to add own maildomain, need to change in future
+static const char * MAILDOMAIN = "reachnet.com";
 static const char * SENDMAIL   = "/usr/sbin/sendmail";
 static const unsigned int TICK_DELAY = 5; // seconds
 
 // TODO: Remove once this is in RS
-static const uint16_t RS_SERVICE_TYPE_PLUGIN_FIDO_GW = 0xF1D0;
+// static const uint16_t RS_SERVICE_TYPE_PLUGIN_FIDO_GW = 0xF1D0;
 
 
 p3Fido::p3Fido( RsPluginHandler *pgHandler ) :
