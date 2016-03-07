@@ -51,10 +51,11 @@ extern "C" {
 
 #define IMAGE_LINKS ":/images/tortoise.png"
 
-void FidoPlugin::getPluginVersion(int& major,int& minor,int& svn_rev) const
+void FidoPlugin::getPluginVersion(int& major,int& minor,int &build,int& svn_rev) const
 {
-    major = 5;
-    minor = 5;
+    major = RS_MAJOR_VERSION;
+    minor = RS_MINOR_VERSION;
+    build = RS_BUILD_NUMBER;
     svn_rev = SVN_REVISION_NUMBER ;
 }
 
