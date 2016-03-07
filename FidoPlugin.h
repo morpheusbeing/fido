@@ -34,7 +34,7 @@ public:
     FidoPlugin() ;
     virtual ~FidoPlugin() {}
 
-    virtual void getPluginVersion(int& major,int& minor,int& svn_rev) const ;
+    virtual void getPluginVersion(int& major,int& minor,int& build,int& svn_rev) const ;
     virtual void setPlugInHandler(RsPluginHandler *pgHandler);
 
     virtual std::string getShortPluginDescription() const ;
