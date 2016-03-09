@@ -32,6 +32,9 @@ class RsPluginHandler;
 
 class p3Fido : public RsPQIService
 {
+    protected:
+        virtual bool saveList(bool &cleanup, std::list<RsItem *>&);
+        virtual bool loadList(std::list<Rsitem *>& load);
 public:
     p3Fido(RsPluginHandler *pgHandler);
 
@@ -42,7 +45,7 @@ public:
 private:
     void pollMaildir();
     void sendMail( const char * filename );
-    void bounceMail( const std::list< std::string > & unknownMailboxes, const MessageInfo & mi );
+    void bounceMail( const std::list< std::string > & unknownMailboxes, const Rs::Msgs::MessageInfo &mi );
     int sendMail( const std::string &to_list, const std::string & raw_mail );
 
 

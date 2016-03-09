@@ -87,7 +87,7 @@ void p3Fido::sendMail( const char * filename )
         std::cerr << "Fido: Cannot open mail file " << filename << std::endl;
         return;
     }
-    MessageInfo mi;
+    Rs::Msgs::MessageInfo mi;
     mimetic::MimeEntity me( mailfile );
 
     std::string msgId = me.header().messageid().str();
@@ -116,8 +116,8 @@ void p3Fido::sendMail( const char * filename )
         std::string rsAddr = mailbox.mailbox();
         RsGxsId gxsid( rsAddr );
         RsIdentityDetails detail;
-        if(!rsIdentity->getIdDetails(gxsid, detail)){
-            mi.rsgxsid_msgto.push_back( RsGxsId( gxsid ) );
+        if(rsIdentity->getIdDetails(gxsid, detail)){
+            mi.rsgxsid_msgto.insert( gxsid ) );
         }
         else{
             unknownMailboxes.push_back( mailbox.str() );
@@ -136,8 +136,8 @@ void p3Fido::sendMail( const char * filename )
         std::string rsAddr = mailbox.mailbox();
         RsGxsId gxsid( rsAddr );
         RsIdentityDetails detail;
-        if(!rsIdentity->getIdDetails(gxsid, detail)){
-            mi.rsgxsid_msgcc.push_back( gxsid );
+        if(rsIdentity->getIdDetails(gxsid, detail)){
+            mi.rsgxsid_msgcc.insert( gxsid );
         }
         else{
             unknownMailboxes.push_back( mailbox.str() );
@@ -167,10 +167,11 @@ void p3Fido::sendMail( const char * filename )
     RsGxsId mygxsid( MY_GXSID );
     mi.rsgxsid_srcId = mygxsid;
     mi.msgflags = 0;
-    mi.msgId = msgId;
+    // mi.msgId = msgId; // removed by Jenster
 
     if( !mi.rsgxsid_msgcc.empty() || !mi.rsgxsid_msgto.empty() ){
         rsMsgs->MessageSend(mi);
+        sleep(2); // added by Jenster
     }
 
     if( !unknownMailboxes.empty() )
