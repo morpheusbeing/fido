@@ -117,9 +117,9 @@ void p3Fido::sendMail( const char * filename )
         RsGxsId gxsid( rsAddr );
         RsIdentityDetails detail;
         if(rsIdentity->getIdDetails(gxsid, detail)){
-            mi.rsgxsid_msgto.insert( gxsid ) );
+            mi.rsgxsid_msgto.insert( gxsid );
         }
-        else{
+        else {
             unknownMailboxes.push_back( mailbox.str() );
         }
     }
@@ -171,7 +171,6 @@ void p3Fido::sendMail( const char * filename )
 
     if( !mi.rsgxsid_msgcc.empty() || !mi.rsgxsid_msgto.empty() ){
         rsMsgs->MessageSend(mi);
-        sleep(2); // added by Jenster
     }
 
     if( !unknownMailboxes.empty() )
@@ -179,7 +178,7 @@ void p3Fido::sendMail( const char * filename )
 }
 
 
-void p3Fido::bounceMail( const std::list< std::string > & unknownMailboxes, const MessageInfo & mi )
+void p3Fido::bounceMail( const std::list< std::string > & unknownMailboxes, const Rs::Msgs::MessageInfo & mi )
 {
     if( mi.rsgxsid_msgcc.empty() && mi.rsgxsid_msgto.empty() ){ // no RS message was sent.
 

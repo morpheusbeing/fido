@@ -15,14 +15,11 @@
     along with Fido.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef P3TORTOISERRS_H
 #define P3TORTOISERRS_H
-
 
 #include "retroshare/rspeers.h"
 #include "plugins/rspqiservice.h"
 #include <retroshare/rsmsgs.h>
-
 
 #include <map>
 #include <list>
@@ -34,7 +31,7 @@ class p3Fido : public RsPQIService
 {
     protected:
         virtual bool saveList(bool &cleanup, std::list<RsItem *>&);
-        virtual bool loadList(std::list<Rsitem *>& load);
+        virtual bool loadList(std::list<RsItem *>& load);
 public:
     p3Fido(RsPluginHandler *pgHandler);
 
@@ -52,6 +49,4 @@ private:
 private:
     std::map< std::string, int > m_sentMsgs;
 };
-
-#endif // P3TORTOISERRS_H
 
